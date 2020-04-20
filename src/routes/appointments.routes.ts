@@ -10,16 +10,12 @@ const appointmentsRouter = Router();
 appointmentsRouter.use(authentication);
 
 appointmentsRouter.post('/', async (request, response) => {
-  try {
-    const { provider_id, date } = request.body;
+  const { provider_id, date } = request.body;
 
-    const service = new CreateappointmentService();
-    const appointment = await service.execute({ provider_id, date: parseISO(date) });
+  const service = new CreateappointmentService();
+  const appointment = await service.execute({ provider_id, date: parseISO(date) });
 
-    return response.json(appointment);
-  } catch (err) {
-    return response.status(400).json({ error: err.message});
-  }
+  return response.json(appointment);
 });
 
 appointmentsRouter.get('/', async (request, response) => {
@@ -29,7 +25,7 @@ appointmentsRouter.get('/', async (request, response) => {
   if (appointments) {
     return response.json(appointments);
   } else {
-    return response.status(400).json({error: 'No registered appointment.'})
+    return response.status(400).json({ error: 'No registered appointment.' })
   }
 });
 
