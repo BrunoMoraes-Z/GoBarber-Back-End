@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import CreateUserService from '../services/CreateUserService';
-import authentication from '../middlewares/ensureAuthnticated';
-import updadeAvatarService from '../services/UpdateUserAvatarService';
+import CreateUserService from '@modules/users/services/CreateUserService';
+import authentication from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import updadeAvatarService from '@modules/users/services/UpdateUserAvatarService';
 import multer from 'multer';
-import uploadConfig from '../config/upload';
+import uploadConfig from '@config/upload';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
@@ -26,6 +26,7 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.patch('/avatar', authentication, upload.single('avatar'), async (request, response) => {
   const service = new updadeAvatarService();
+  console.log(request.file)
   const user = await service.execute({ user_id: request.user.id, avatarFilename: request.file.filename });
 
   return response.json({ user });
