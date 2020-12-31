@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import authentication from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import updadeAvatarService from '@modules/users/services/UpdateUserAvatarService';
@@ -12,7 +13,7 @@ usersRouter.post('/', async (request, response) => {
   try {
     const { name, email, password } = request.body;
 
-    const service = new CreateUserService();
+    const service = container.resolve(CreateUserService);
 
     const user = await service.execute({ name, email, password });
 
@@ -25,7 +26,7 @@ usersRouter.post('/', async (request, response) => {
 });
 
 usersRouter.patch('/avatar', authentication, upload.single('avatar'), async (request, response) => {
-  const service = new updadeAvatarService();
+  const service = container.resolve(updadeAvatarService);
   console.log(request.file)
   const user = await service.execute({ user_id: request.user.id, avatarFilename: request.file.filename });
 
