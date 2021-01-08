@@ -1,5 +1,6 @@
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
+import "reflect-metadata";
 import { inject, injectable}  from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
