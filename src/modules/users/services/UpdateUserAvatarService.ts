@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import 'reflect-metadata';
 import { injectable, inject } from 'tsyringe';
 import User from '@modules/users/infra/typeorm/entities/User';
 import uploadConfig from '@config/upload';
