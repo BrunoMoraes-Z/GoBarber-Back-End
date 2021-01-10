@@ -29,7 +29,7 @@ describe('CreateUser', () => {
       password: '123456',
     });
 
-    expect(service.execute({
+    await expect(service.execute({
       name: 'John Doe',
       email: 'johndoe@robot-mail.com',
       password: '123456',
