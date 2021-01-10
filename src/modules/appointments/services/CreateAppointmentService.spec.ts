@@ -3,7 +3,7 @@ import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRe
 import AppError from "@shared/errors/AppError";
 
 describe('CreateAppointment', () => {
-  it('sould be able to create a new appointment', async () => {
+  it('should be able to create a new appointment', async () => {
     const repository = new FakeAppointmentsRepository()
     const service = new CreateAppointmentService(repository);
     const appointment = await service.execute({
@@ -14,7 +14,7 @@ describe('CreateAppointment', () => {
     expect(appointment.provider_id).toBe('as5da645');
   });
 
-  it('sould not be able to create two appointments on the same time', async () => {
+  it('should not be able to create two appointments on the same time', async () => {
     const repository = new FakeAppointmentsRepository()
     const service = new CreateAppointmentService(repository);
 

@@ -4,7 +4,7 @@ import FakeHashProvider from '../providers/hashProvider/fakes/FakeHashProvider';
 import AppError from "@shared/errors/AppError";
 
 describe('CreateUser', () => {
-  it('sould be able to create a new user', async () => {
+  it('should be able to create a new user', async () => {
     const repository = new FakeUsersRepository();
     const fake_repository = new FakeHashProvider();
     const service = new CreateUserService(repository, fake_repository);
@@ -18,7 +18,7 @@ describe('CreateUser', () => {
     expect(user).toHaveProperty('id');
   });
 
-  it('sould not be able to create a new user with same email from another', async () => {
+  it('should not be able to create a new user with same email from another', async () => {
     const repository = new FakeUsersRepository();
     const fake_repository = new FakeHashProvider();
     const service = new CreateUserService(repository, fake_repository);

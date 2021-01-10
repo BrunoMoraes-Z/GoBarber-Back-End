@@ -4,7 +4,7 @@ import FakeStorageProvider from '@shared/container/providers/storageProvider/fak
 import AppError from "@shared/errors/AppError";
 
 describe('UpdateUserAvatar', () => {
-  it('sould be able to create a new user', async () => {
+  it('should be able to create a new user', async () => {
     const repository = new FakeUsersRepository();
     const fake_repository = new FakeStorageProvider();
     const service = new UpdateUserAvatarService(repository, fake_repository);
@@ -23,7 +23,7 @@ describe('UpdateUserAvatar', () => {
     expect(user.avatar).toBe('avatar.jpg');
   });
 
-  it('sould not be able to update avatar from non existing user', async () => {
+  it('should not be able to update avatar from non existing user', async () => {
     const repository = new FakeUsersRepository();
     const fake_repository = new FakeStorageProvider();
     const service = new UpdateUserAvatarService(repository, fake_repository);
@@ -34,7 +34,7 @@ describe('UpdateUserAvatar', () => {
     })).rejects.toBeInstanceOf(AppError);
   });
 
-  it('sould delete old avatar when updating new one', async () => {
+  it('should delete old avatar when updating new one', async () => {
     const repository = new FakeUsersRepository();
     const fake_repository = new FakeStorageProvider();
 
