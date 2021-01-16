@@ -12,11 +12,17 @@ class UsersRepository implements IUserTokenRepository {
       id: uuid(),
       token: uuid(),
       user_id,
+      created_at: new Date(),
+      updated_at: new Date()
     });
     this.userTokens.push(user_token);
     return user_token;
   }
 
+  public async findByToken(token: string): Promise<UserToken | undefined> {
+    const user_token = this.userTokens.find(t => t.token === token);
+    return user_token;
+  }
 }
 
 export default UsersRepository;
