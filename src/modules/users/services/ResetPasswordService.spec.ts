@@ -52,7 +52,7 @@ describe('ResetPasswordService', () => {
   it('should not be able to reset the password with non-existing user', async () => {
     const { token } = await fake_token.generate('invalid-user');
 
-    expect(service.execute({
+    await expect(service.execute({
       token: token,
       password: '123456'
     })).rejects.toBeInstanceOf(AppError);
